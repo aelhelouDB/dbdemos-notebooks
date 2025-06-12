@@ -50,6 +50,8 @@
 # COMMAND ----------
 
 import mlflow
+
+
 model_name = f"{catalog}.{db}.advanced_mlops_churn"
 
 print(f"Finding best run from {xp_name} and pushing new model version to {model_name}")

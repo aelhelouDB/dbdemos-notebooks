@@ -57,7 +57,7 @@
 
 # COMMAND ----------
 
-# MAGIC  %pip install mlflow==2.22.0
+# MAGIC %pip install mlflow --upgrade --pre
 
 # COMMAND ----------
 
