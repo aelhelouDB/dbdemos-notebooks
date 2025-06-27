@@ -31,8 +31,9 @@
 # COMMAND ----------
 
 # DBTITLE 1,Install needed package
-# MAGIC %pip install -qU databricks-sdk==0.40.0 mlflow==2.22.0 databricks-feature-engineering==0.8.0
-# MAGIC %pip install -qU dbldatagen
+# MAGIC %pip install -qU databricks-sdk==0.40.0 dbldatagen mlflow==2.22.0
+# MAGIC
+# MAGIC
 # MAGIC dbutils.library.restartPython()
 
 # COMMAND ----------

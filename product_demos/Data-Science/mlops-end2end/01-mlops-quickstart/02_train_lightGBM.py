@@ -29,6 +29,7 @@
 # COMMAND ----------
 
 import mlflow
+xp_path = f"/Users/{current_user}/dbdemos_mlops"
 
 
 #Added for the demo purpose
@@ -202,20 +203,27 @@ preprocessor = ColumnTransformer(transformers, remainder="drop", sparse_threshol
 
 # COMMAND ----------
 
+# AutoML completed train - validation - test split internally and used _automl_split_col_xxxx to specify the set
+split_col = [c for c in df_loaded.columns if c.startswith('_automl_split_col') or c == 'split'][0]
+
 # AutoML completed train - validation - test split internally and used split to specify the set
-split_train_df = df_loaded.loc[df_loaded.split == "train"]
-split_val_df = df_loaded.loc[df_loaded.split == "validate"]
-split_test_df = df_loaded.loc[df_loaded.split == "test"]
+split_train_df = df_loaded.loc[df_loaded[split_col] == "train"]
+split_val_df = df_loaded.loc[df_loaded[split_col] == "validate"]
+split_test_df = df_loaded.loc[df_loaded[split_col] == "test"]
 
 # Separate target co# Separate target column from features and drop split
-X_train = split_train_df.drop([target_col, "split"], axis=1)
+X_train = split_train_df.drop([target_col, "split", split_col], errors='ignore', axis=1)
 y_train = split_train_df[target_col]
 
-X_val = split_val_df.drop([target_col, "split"], axis=1)
+X_val = split_val_df.drop([target_col, "split", split_col], errors='ignore', axis=1)
 y_val = split_val_df[target_col]
 
-X_test = split_test_df.drop([target_col, "split"], axis=1)
+X_test = split_test_df.drop([target_col, "split", split_col], errors='ignore', axis=1)
 y_test = split_test_df[target_col]
+
+if len(X_val) == 0: #hack for the demo to support all version - don't do that in production
+    X_val = X_test
+    y_val = y_test
 
 # COMMAND ----------
 

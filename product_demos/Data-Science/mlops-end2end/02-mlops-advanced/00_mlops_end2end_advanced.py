@@ -46,8 +46,6 @@
 # MAGIC * monitoring data and model drift
 # MAGIC * detecting drift and retraining the model
 # MAGIC
-# MAGIC Run this demo on a __DBR 15.4 ML LTS__ cluster. A demo cluster has been created for you.
-# MAGIC
 # MAGIC <br>
 # MAGIC
 # MAGIC <img src="https://github.com/databricks-demos/dbdemos-resources/blob/main/images/product/mlops/advanced/banners/mlflow-uc-end-to-end-advanced-0.png?raw=true" width="1200">
@@ -61,7 +59,7 @@
 
 # COMMAND ----------
 
-# MAGIC %run ../_resources/00-setup $reset_all_data=false $adv_mlops=true 
+# MAGIC %run ../_resources/00-setup $adv_mlops=true 
 
 # COMMAND ----------
 
